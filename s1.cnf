@@ -1,0 +1,74 @@
+[mysqld]
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+datadir         = /var/lib/mysql
+secure-file-priv= NULL
+
+
+# Unique to
+server_id=1
+# the group_replication_group_name is the UUID for the entire group
+# Each server has their own UUID in the file auto.cnf located in the MySQL data directory
+# You can generate your own group_replication_group_name on Linux with `uuidgen -t`, 
+# on a Mac use "uuidgen" 
+# for Windows - The Windows SDK comes with a tool called uuidgen
+# all members use this value as group_replication_group_name
+
+# PLEASE NOTE: this group_replication_group_name must be unique for each Group Replication (GR) group
+# so each server within a group will have the same value
+# Example: if you have two GR groups with three nodes in each group, then three nodes in one group
+# will have the same group_replication_group_name, and the other three nodes in the different
+# group will have a different group_replication_group_name
+group_replication_group_name = '9229e4f3-5e5e-4b18-8058-0a6a21d4e7d5'
+
+
+# this is the default port for MySQL - you can change it if you want, but it should be the same on all servers
+port=3306
+
+# you may specify a name for the binary log, or leave it blank to use the default name
+# however, binary logging is required
+log_bin=mysql-bin  
+
+# these settings are required
+log_slave_updates=ON
+binlog_checksum=NONE
+enforce_gtid_consistency=ON
+gtid_mode=ON
+master_info_repository=TABLE
+relay_log_info_repository=TABLE
+transaction_write_set_extraction=XXHASH64
+log_slave_updates= ON
+
+
+# Group Replication specific options
+
+# this is the name of the plugin
+# load the plugin - in Windows, the plugin will be named group_replication.dll
+
+plugin_load_add ="group_replication.so"
+
+# this is required
+group_replication = FORCE_PLUS_PERMANENT
+
+# you will turn this on and back off during Group Replication setup
+group_replication_bootstrap_group = OFF
+
+
+
+# uncomment this line AFTER you have started Group Replication
+# so that Group Replication will start after a reboot
+
+group_replication_start_on_boot = ON
+
+# change this to be the local address for each server
+# the port number can be anything except ports already in use
+# and do not use 3306
+
+group_replication_local_address = 'db1:33061'
+
+# add all of the members of the group here, along with the same port numbers
+
+group_replication_group_seeds = 'db1:33061,db2:33061,db3:33061'
+
+loose_group_replication_single_primary_mode=OFF
+loose_group_replication_enforce_update_everywhere_checks=OFF

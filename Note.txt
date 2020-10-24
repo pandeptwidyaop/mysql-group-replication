@@ -1,0 +1,15 @@
+#Masing masing
+SELECT * FROM performance_schema.replication_group_members\G
+
+SHOW MASTER STATUS\G
+
+SHOW BINLOG EVENTS in 'mysql-bin.000001'\G
+
+select * from information_schema.plugins where PLUGIN_NAME = 'group_replication'\G
+
+SET SQL_LOG_BIN=0;
+CREATE USER rpl_user@'%' IDENTIFIED WITH sha256_password BY 'R3plic4tion!';
+GRANT REPLICATION SLAVE ON *.* TO rpl_user@'%';
+FLUSH PRIVILEGES;
+SET SQL_LOG_BIN=1;
+
