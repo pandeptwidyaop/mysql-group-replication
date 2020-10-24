@@ -13,3 +13,8 @@ GRANT REPLICATION SLAVE ON *.* TO rpl_user@'%';
 FLUSH PRIVILEGES;
 SET SQL_LOG_BIN=1;
 
+#reference
+https://mysqlhighavailability.com/setting-up-mysql-group-replication-with-mysql-docker-images/
+
+#command
+set global read_only = 0 
