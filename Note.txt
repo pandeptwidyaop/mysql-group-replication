@@ -18,3 +18,9 @@ https://mysqlhighavailability.com/setting-up-mysql-group-replication-with-mysql-
 
 #command
 set global read_only = 0 
+
+#proxysql
+
+insert into mysql_group_replication_hostgroups (writer_hostgroup,backup_writer_hostgroup,
+    reader_hostgroup, offline_hostgroup,active,max_writers,writer_is_also_reader,max_transactions_behind) 
+    values (1,2,3,4,1,1,0,100);

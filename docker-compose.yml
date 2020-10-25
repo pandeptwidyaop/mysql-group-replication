@@ -2,6 +2,18 @@ version: "3"
 networks:
   mysql:
 services:
+  proxy:
+    container_name: proxysql
+    image: proxysql/proxysql
+    volumes:
+      - ./proxy_data:/var/lib/proxysql
+      - ./proxysql.cnf:/etc/proxysql.cnf
+    ports:
+      - 6032:6032
+      - 6033:6033
+      - 6080:6080
+    networks:
+      mysql:
   db1:
     container_name: db1
     image: mysql
