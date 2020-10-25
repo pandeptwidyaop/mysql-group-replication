@@ -34,3 +34,29 @@ services:
       - ./s3.cnf:/etc/mysql/my.cnf
     networks:
       mysql:
+  db4:
+    container_name: db4
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - ./db_4:/var/lib/mysql
+      - ./s4.cnf:/etc/mysql/my.cnf
+    networks:
+      mysql:
+  db5:
+    container_name: db5
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+    volumes:
+      - ./db_5:/var/lib/mysql
+      - ./s5.cnf:/etc/mysql/my.cnf
+    networks:
+      mysql:
+  test:
+    container_name: test
+    build:
+      context: test
+    networks:
+      mysql:

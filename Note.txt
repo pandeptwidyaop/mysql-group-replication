@@ -1,5 +1,5 @@
 #Masing masing
-SELECT * FROM performance_schema.replication_group_members\G
+    SELECT * FROM performance_schema.replication_group_members\G
 
 SHOW MASTER STATUS\G
 

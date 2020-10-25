@@ -6,7 +6,7 @@ secure-file-priv= NULL
 
 
 # Unique to
-server_id=3
+server_id=4
 # the group_replication_group_name is the UUID for the entire group
 # Each server has their own UUID in the file auto.cnf located in the MySQL data directory
 # You can generate your own group_replication_group_name on Linux with `uuidgen -t`, 
@@ -64,11 +64,11 @@ group_replication_start_on_boot = OFF
 # the port number can be anything except ports already in use
 # and do not use 3306
 
-group_replication_local_address = 'db3:33061'
+group_replication_local_address = 'db5:33061'
 
 # add all of the members of the group here, along with the same port numbers
 
-group_replication_group_seeds = 'db1:33061,db2:33061,db3:33061,db4:33061'
+group_replication_group_seeds = 'db1:33061,db2:33061,db3:33061,db4:33061,db5:33061'
 
 loose_group_replication_single_primary_mode=OFF
 loose_group_replication_enforce_update_everywhere_checks=OFF

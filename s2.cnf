@@ -58,7 +58,7 @@ group_replication_bootstrap_group = OFF
 # uncomment this line AFTER you have started Group Replication
 # so that Group Replication will start after a reboot
 
-group_replication_start_on_boot = ON
+group_replication_start_on_boot = OFF
 
 # change this to be the local address for each server
 # the port number can be anything except ports already in use
@@ -68,7 +68,7 @@ group_replication_local_address = 'db2:33061'
 
 # add all of the members of the group here, along with the same port numbers
 
-group_replication_group_seeds = 'db1:33061,db2:33061,db3:33061'
+group_replication_group_seeds = 'db1:33061,db2:33061,db3:33061,db4:33061'
 
 loose_group_replication_single_primary_mode=OFF
 loose_group_replication_enforce_update_everywhere_checks=OFF
